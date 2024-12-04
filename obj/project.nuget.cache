@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XHHEJrvYercLmRLat6PSwCDsRYc+vxw/aGMSp26M2ICTVPUmhYn4Tq3m9eHJXJY2uFp/dlRBcWEuBVCWQDtB2A==",
+  "dgSpecHash": "aa2fONTex6bQP8uezAnFUUHtJtFmOWvxOi6fHUx3BO8qPOPJGhmgUp29imXNlfMsMhZnRq6wOjOCcal8Q5NQ2w==",
   "success": true,
   "projectFilePath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/Testezin.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,8 @@
     "/home/vitin/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "/home/vitin/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/home/vitin/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
+    "/home/vitin/.nuget/packages/npgsql/9.0.1/npgsql.9.0.1.nupkg.sha512",
+    "/home/vitin/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.1/npgsql.entityframeworkcore.postgresql.9.0.1.nupkg.sha512",
     "/home/vitin/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "/home/vitin/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "/home/vitin/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",

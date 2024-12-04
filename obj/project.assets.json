@@ -5143,11 +5143,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj",
+      "projectUniqueName": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/Testezin.csproj",
       "projectName": "Testezin",
-      "projectPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj",
+      "projectPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/Testezin.csproj",
       "packagesPath": "/home/vitin/.nuget/packages/",
-      "outputPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/obj/",
+      "outputPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vitin/.nuget/NuGet/NuGet.Config"

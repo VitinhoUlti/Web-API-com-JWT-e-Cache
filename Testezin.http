@@ -1,0 +1,6 @@
+@Testezin_HostAddress = http://localhost:5058
+
+GET {{Testezin_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

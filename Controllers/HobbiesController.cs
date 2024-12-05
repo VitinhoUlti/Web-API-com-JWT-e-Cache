@@ -34,7 +34,7 @@ namespace Testezin.Controllers
 
         [HttpGet("AcharHobbies/nome/{nome}")]
         public IActionResult ObterNome(string nome){
-            var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome == nome select pessoa;
+            var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome.Contains(nome) select pessoa;
             if (hobbie == null) return NotFound();
             return Ok(hobbie);
         }

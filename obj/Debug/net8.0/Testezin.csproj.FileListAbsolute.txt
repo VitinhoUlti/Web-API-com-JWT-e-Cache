@@ -199,3 +199,5 @@
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/obj/Debug/net8.0/Testezin.pdb
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/obj/Debug/net8.0/Testezin.genruntimeconfig.cache
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/obj/Debug/net8.0/ref/Testezin.dll
+/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/bin/Debug/net8.0/Npgsql.dll
+/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll

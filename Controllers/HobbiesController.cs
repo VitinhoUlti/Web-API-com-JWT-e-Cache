@@ -25,9 +25,16 @@ namespace Testezin.Controllers
             return Ok(hobbie);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult ObterHobbie(int id){
+        [HttpGet("AcharHobbies/id/{id}")]
+        public IActionResult ObterId(int id){
             var hobbie = contexto.Hobbies.Find(id);
+            if (hobbie == null) return NotFound();
+            return Ok(hobbie);
+        }
+
+        [HttpGet("AcharHobbies/nome/{nome}")]
+        public IActionResult ObterNome(string nome){
+            var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome == nome select pessoa;
             if (hobbie == null) return NotFound();
             return Ok(hobbie);
         }

@@ -38,5 +38,21 @@ namespace Testezin.Controllers
             if (hobbie == null) return NotFound();
             return Ok(hobbie);
         }
+
+        [HttpPut("AtualizarHobbies/{id}")]
+        public IActionResult AtualizarHobbieporId(int id, Hobbies novoHobbie){
+            var hobbie = contexto.Hobbies.Find(id);
+            if (hobbie == null) return NotFound();
+
+            hobbie.Nome = novoHobbie.Nome;
+            hobbie.Aniversario = novoHobbie.Aniversario;
+            hobbie.Hobbie = novoHobbie.Hobbie;
+            hobbie.Gostos = novoHobbie.Gostos;
+            hobbie.PossiveisPresentes = novoHobbie.PossiveisPresentes;
+
+            contexto.Hobbies.Update(hobbie);
+            contexto.SaveChanges();
+            return Ok(hobbie);
+        }
     }
 }

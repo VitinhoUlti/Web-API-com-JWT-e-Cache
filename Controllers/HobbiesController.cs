@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Testezin.Contexto;
+using Testezin.Entidades;
 
 namespace Testezin.Controllers
 {
@@ -10,27 +12,17 @@ namespace Testezin.Controllers
     [Route("[controller]")]
     public class HobbiesController : ControllerBase
     {
-        [HttpGet("ObterHobbie/{nome}/{hobbies}")]
-        public IActionResult ObterHobbie(string nome, string hobbies){
-            var obj = new {
-                NomeDaPessoa = nome,
-                Hobbies = hobbies
-            };
+        private readonly HobbiesContext contexto;
 
-            return Ok(obj);
+        public HobbiesController(HobbiesContext hobbiesContext){
+            contexto = hobbiesContext;
         }
 
-        [HttpGet("HobbieDe/{nome}")]
-        public IActionResult HobbieDe(string nome){
-            var pessoas = nome.Split(',');
-            List<string> mensagem = new List<string>();
-
-            foreach (var pessoa in pessoas)
-            {
-                mensagem.Add("O hobbie de " + pessoa + " é amar;");
-            }
-
-            return Ok(new {mensagem});
+        [HttpPost]
+        public IActionResult CriarHobbie(Hobbies hobbie){
+            contexto.Add(hobbie);
+            contexto.SaveChanges();
+            return Ok(hobbie);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Testezin.Controllers
         public IActionResult CriarHobbie(Hobbies hobbie){
             contexto.Add(hobbie);
             contexto.SaveChanges();
-            return Ok(hobbie);
+            return CreatedAtAction(nameof(ObterId), new {id = hobbie.Id}, hobbie);
         }
 
         [HttpGet("AcharHobbies/id/{id}")]

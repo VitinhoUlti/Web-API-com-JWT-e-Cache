@@ -54,5 +54,15 @@ namespace Testezin.Controllers
             contexto.SaveChanges();
             return Ok(hobbie);
         }
+
+        [HttpDelete("DeletarHobbie/{id}")]
+        public IActionResult DeletarHobbie(int id){
+            var hobbie = contexto.Hobbies.Find(id);
+            if (hobbie == null) return NotFound();
+
+            contexto.Hobbies.Remove(hobbie);
+            contexto.SaveChanges();
+            return NoContent();
+        }
     }
 }

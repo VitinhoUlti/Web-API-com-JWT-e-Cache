@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Testezin.Contexto;
 using Testezin.Entidades;
+using Testezin.Servicos;
 
 namespace Testezin.Controllers
 {
@@ -22,7 +23,8 @@ namespace Testezin.Controllers
         public IActionResult CriarHobbie(Hobbies hobbie){
             contexto.Add(hobbie);
             contexto.SaveChanges();
-            return CreatedAtAction(nameof(ObterId), new {id = hobbie.Id}, hobbie);
+            var token = TokenService.GenerateToken();
+            return CreatedAtAction(nameof(ObterId), new {id = hobbie.Id, token}, hobbie);
         }
 
         [HttpGet("id/{id}")]

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F/uxVVwHcKBlrMB+P28xfOmyEFtzs474ugdrRQbeRKZJ9I2+wL/iWGTXLlY0l8pcC1UYruGovhVwNiFjzgo2Mw==",
+  "dgSpecHash": "0Pk/ZIIISM1txfQrjAwbckwu8Hi9ki+abavO48dILK1z3LeWhqzV47Qts/GiUlOnDElyLfDDYUsB1m0EyNKOJQ==",
   "success": true,
-  "projectFilePath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Hobbies-Web-API-EntityFramework/Testezin.csproj",
+  "projectFilePath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj",
   "expectedPackageFiles": [
     "/home/vitin/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/vitin/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",

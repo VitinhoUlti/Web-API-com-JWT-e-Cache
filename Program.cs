@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Testezin.Servicos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme =  JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options => {
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters{
+    options.TokenValidationParameters = new TokenValidationParameters{
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
@@ -23,7 +24,7 @@ builder.Services.AddAuthentication(options => {
 
         ValidIssuer = builder.Configuration["jwt:issuer"],
         ValidAudience = builder.Configuration["jwt:audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:chaveSecreta"])),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Chave.chaveSecreta)),
         ClockSkew = TimeSpan.Zero
     };
 });
@@ -44,6 +45,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

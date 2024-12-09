@@ -1,0 +1,6 @@
+#Ignorar pasta Servicos (Serviços)
+Servicos
+
+#Ignorar appsettings
+appsetting.Development.json
+appsetting.json

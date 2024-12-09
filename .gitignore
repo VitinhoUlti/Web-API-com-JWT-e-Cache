@@ -2,5 +2,5 @@
 Servicos
 
 #Ignorar appsettings
-appsetting.Development.json
-appsetting.json
+.appsetting.Development.json
+.appsetting.json

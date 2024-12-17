@@ -339,5 +339,5 @@
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/obj/Debug/net8.0/Testezin.sourcelink.json
-/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/Servicos/appsettings.Development.json
-/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/Servicos/appsettings.json
+/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/appsettings.Development.json
+/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/appsettings.json

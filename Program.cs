@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<HobbiesContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
+builder.Services.AddDbContext<UsuariosContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme =  JwtBearerDefaults.AuthenticationScheme;

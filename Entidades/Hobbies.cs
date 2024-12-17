@@ -8,6 +8,7 @@ namespace Testezin.Entidades
     public class Hobbies
     {
         public int Id { get; set; }
+        public Usuarios Usuario { get; set; }
         public string Nome { get; set; }
         public DateOnly Aniversario { get; set; }
         public string Hobbie { get; set; }

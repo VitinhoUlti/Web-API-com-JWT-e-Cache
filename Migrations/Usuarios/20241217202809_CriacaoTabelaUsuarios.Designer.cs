@@ -11,7 +11,7 @@ using Testezin.Contexto;
 namespace Testezin.Migrations.Usuarios
 {
     [DbContext(typeof(UsuariosContext))]
-    [Migration("20241217033725_CriacaoTabelaUsuarios")]
+    [Migration("20241217202809_CriacaoTabelaUsuarios")]
     partial class CriacaoTabelaUsuarios
     {
         /// <inheritdoc />
@@ -40,7 +40,7 @@ namespace Testezin.Migrations.Usuarios
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

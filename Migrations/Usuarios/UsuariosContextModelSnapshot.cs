@@ -37,7 +37,7 @@ namespace Testezin.Migrations.Usuarios
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

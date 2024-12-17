@@ -15,8 +15,8 @@ namespace Testezin.Controllers
     {
         private readonly UsuariosContext contexto;
 
-        public UsuariosController(UsuariosContext hobbiesContext){
-            contexto = hobbiesContext;
+        public UsuariosController(UsuariosContext usuariosContext){
+            contexto = usuariosContext;
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace Testezin.Controllers
 
         [HttpGet("id/{id}")]
         public IActionResult ObterId(int id){
-            var usuario = contexto.Usuario.Find(id);
+            var usuario = contexto.Usuarios.Find(id);
             if (usuario == null) return NotFound();
             return Ok(usuario);
         }

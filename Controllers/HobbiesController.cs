@@ -21,14 +21,13 @@ namespace Testezin.Controllers
             contextoUsuario = usuariosContext;
         }
 
-        [HttpPost]
+        [HttpPost("{idDoUsuario})")]
         public IActionResult CriarHobbie(Hobbies hobbie, int idDoUsuario){
-            hobbie.Usuario = contextoUsuario.Usuario.Find(idDoUsuario);
-            if (hobbie.Usuario == null) return NotFound();
-            
+            hobbie.IdDoUsuario = idDoUsuario;
+
             contexto.Add(hobbie);
             contexto.SaveChanges();
-            return CreatedAtAction(nameof(ObterId), hobbie);
+            return CreatedAtAction(nameof(ObterId), new {id = hobbie.Id}, hobbie);
         }
 
         [HttpGet("id/{id}")]

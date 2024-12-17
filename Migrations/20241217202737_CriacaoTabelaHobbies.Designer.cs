@@ -12,7 +12,7 @@ using Testezin.Contexto;
 namespace Testezin.Migrations
 {
     [DbContext(typeof(HobbiesContext))]
-    [Migration("20241217034325_CriacaoTabelaHobbies")]
+    [Migration("20241217202737_CriacaoTabelaHobbies")]
     partial class CriacaoTabelaHobbies
     {
         /// <inheritdoc />
@@ -42,48 +42,18 @@ namespace Testezin.Migrations
                     b.Property<string>("Hobbie")
                         .HasColumnType("text");
 
+                    b.Property<int>("IdDoUsuario")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
                     b.Property<string>("PossiveisPresentes")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Hobbies");
-                });
-
-            modelBuilder.Entity("Testezin.Entidades.Usuarios", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Senha")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Testezin.Entidades.Hobbies", b =>
-                {
-                    b.HasOne("Testezin.Entidades.Usuarios", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
-
-                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }

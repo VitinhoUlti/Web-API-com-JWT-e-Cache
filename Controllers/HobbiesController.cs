@@ -14,17 +14,21 @@ namespace Testezin.Controllers
     public class HobbiesController : ControllerBase
     {
         private readonly HobbiesContext contexto;
+        private readonly UsuariosContext contextoUsuario;
 
-        public HobbiesController(HobbiesContext hobbiesContext){
+        public HobbiesController(HobbiesContext hobbiesContext, UsuariosContext usuariosContext){
             contexto = hobbiesContext;
+            contextoUsuario = usuariosContext;
         }
 
         [HttpPost]
-        public IActionResult CriarHobbie(Hobbies hobbie){
+        public IActionResult CriarHobbie(Hobbies hobbie, int idDoUsuario){
+            hobbie.Usuario = contextoUsuario.Usuario.Find(idDoUsuario);
+            if (hobbie.Usuario == null) return NotFound();
+            
             contexto.Add(hobbie);
             contexto.SaveChanges();
-            var token = TokenService.GenerateToken();
-            return CreatedAtAction(nameof(ObterId), new {id = hobbie.Id, token}, hobbie);
+            return CreatedAtAction(nameof(ObterId), hobbie);
         }
 
         [HttpGet("id/{id}")]

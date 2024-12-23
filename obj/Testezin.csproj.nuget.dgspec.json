@@ -64,6 +64,18 @@
               "target": "Package",
               "version": "[6.6.2, )"
             },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
             "System.IdentityModel.Tokens.JWT": {
               "target": "Package",
               "version": "[8.3.0, )"

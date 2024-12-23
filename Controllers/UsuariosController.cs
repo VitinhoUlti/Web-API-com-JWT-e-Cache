@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Testezin.Contexto;
 using Testezin.Entidades;
@@ -24,10 +25,11 @@ namespace Testezin.Controllers
             contexto.Add(usuario);
             contexto.SaveChanges();
             var token = TokenService.GerarToken(usuario);
-            return CreatedAtAction(nameof(ObterId), new {id = usuario.Id, token}, usuario);
+            return CreatedAtAction(nameof(ObterId), new {id = usuario.Id, token = token}, usuario);
         }
 
         [HttpGet("id/{id}")]
+        [Authorize]
         public IActionResult ObterId(int id){
             var usuario = contexto.Usuarios.Find(id);
             if (usuario == null) return NotFound();

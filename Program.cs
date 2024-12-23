@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Testezin.Servicos;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,16 +18,15 @@ builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme =  JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options => {
-    options.TokenValidationParameters = new TokenValidationParameters{
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
 
-        ValidIssuer = builder.Configuration["jwt:issuer"],
-        ValidAudience = builder.Configuration["jwt:audience"],
+    options.TokenValidationParameters = new TokenValidationParameters{
+        ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Chave.chaveSecreta)),
-        ClockSkew = TimeSpan.Zero
+        
+        ValidateIssuer = false,
+        ValidateAudience = false
     };
 });
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Testezin.Contexto;
 using Testezin.Entidades;
@@ -21,7 +22,8 @@ namespace Testezin.Controllers
             contextoUsuario = usuariosContext;
         }
 
-        [HttpPost("{idDoUsuario})")]
+        [HttpPost]
+        [Authorize]
         public IActionResult CriarHobbie(Hobbies hobbie, int idDoUsuario){
             hobbie.IdDoUsuario = idDoUsuario;
 
@@ -31,6 +33,7 @@ namespace Testezin.Controllers
         }
 
         [HttpGet("id/{id}")]
+        [Authorize]
         public IActionResult ObterId(int id){
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();
@@ -38,6 +41,7 @@ namespace Testezin.Controllers
         }
 
         [HttpGet("nome/{nome}")]
+        [Authorize]
         public IActionResult ObterNome(string nome){
             var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome.ToLower().Contains(nome.ToLower()) select pessoa;
             if (hobbie == null) return NotFound();
@@ -45,6 +49,7 @@ namespace Testezin.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult AtualizarHobbieporId(int id, Hobbies novoHobbie){
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();
@@ -61,6 +66,7 @@ namespace Testezin.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeletarHobbie(int id){
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();

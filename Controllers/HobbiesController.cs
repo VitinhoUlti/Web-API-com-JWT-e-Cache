@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Testezin.Contexto;
 using Testezin.Entidades;
 using Testezin.Servicos;
@@ -15,11 +16,12 @@ namespace Testezin.Controllers
     public class HobbiesController : ControllerBase
     {
         private readonly HobbiesContext contexto;
-        private readonly UsuariosContext contextoUsuario;
+        private readonly IMemoryCache cacheDeMemoria;
+        private const string chaveMemoryCache = "chaveMemoria";
 
-        public HobbiesController(HobbiesContext hobbiesContext, UsuariosContext usuariosContext){
+        public HobbiesController(HobbiesContext hobbiesContext, IMemoryCache memoryCache){
             contexto = hobbiesContext;
-            contextoUsuario = usuariosContext;
+            cacheDeMemoria = memoryCache;
         }
 
         [HttpPost]

@@ -21,6 +21,7 @@ namespace Testezin.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Cadastrar(Usuarios usuario){
             contexto.Add(usuario);
             contexto.SaveChanges();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Testezin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a44cd7319b948405e51758911af0526fd47f813c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e916f70b7be318297932c3b29dcec9e9bb682908")]
 [assembly: System.Reflection.AssemblyProductAttribute("Testezin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Testezin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

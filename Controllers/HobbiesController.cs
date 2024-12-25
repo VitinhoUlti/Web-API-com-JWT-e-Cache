@@ -16,12 +16,11 @@ namespace Testezin.Controllers
     public class HobbiesController : ControllerBase
     {
         private readonly HobbiesContext contexto;
-        private readonly IMemoryCache cacheDeMemoria;
-        private const string chaveMemoryCache = "chaveMemoria";
+        private readonly IMemoryCache _memoryCache;
 
         public HobbiesController(HobbiesContext hobbiesContext, IMemoryCache memoryCache){
             contexto = hobbiesContext;
-            cacheDeMemoria = memoryCache;
+            _memoryCache = memoryCache;
         }
 
         [HttpPost]
@@ -37,8 +36,17 @@ namespace Testezin.Controllers
         [HttpGet("id/{id}")]
         [Authorize]
         public IActionResult ObterId(int id){
+            var hobbieCache = _memoryCache.Get(id.ToString());
+            if(_memoryCache.TryGetValue(id.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
+
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();
+
+            var memorycacheoptions = new MemoryCacheEntryOptions {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
+                SlidingExpiration = TimeSpan.FromSeconds(1200)
+            };
+            _memoryCache.Set(id.ToString(), hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 

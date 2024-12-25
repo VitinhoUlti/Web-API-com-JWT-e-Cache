@@ -53,8 +53,17 @@ namespace Testezin.Controllers
         [HttpGet("nome/{nome}")]
         [Authorize]
         public IActionResult ObterNome(string nome){
+            var hobbieCache = _memoryCache.Get(nome.ToString());
+            if(_memoryCache.TryGetValue(nome.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
+
             var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome.ToLower().Contains(nome.ToLower()) select pessoa;
             if (hobbie == null) return NotFound();
+
+            var memorycacheoptions = new MemoryCacheEntryOptions {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
+                SlidingExpiration = TimeSpan.FromSeconds(1200)
+            };
+            _memoryCache.Set(nome.ToString(), hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 

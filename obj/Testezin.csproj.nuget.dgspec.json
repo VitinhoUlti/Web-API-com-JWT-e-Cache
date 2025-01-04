@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj": {}
+    "/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/Testezin.csproj": {}
   },
   "projects": {
-    "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj": {
+    "/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/Testezin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj",
+        "projectUniqueName": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/Testezin.csproj",
         "projectName": "Testezin",
-        "projectPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/Testezin.csproj",
+        "projectPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/Testezin.csproj",
         "packagesPath": "/home/vitin/.nuget/packages/",
-        "outputPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/obj/",
+        "outputPath": "/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/vitin/.nuget/NuGet/NuGet.Config"
@@ -46,9 +46,17 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[9.0.0, )"
             },

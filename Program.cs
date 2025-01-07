@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Chave.chaveSecreta = builder.Configuration["ChaveJWT"];
+
 // Add services to the container.
 builder.Services.AddDbContext<HobbiesContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 builder.Services.AddDbContext<UsuariosContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
@@ -54,5 +56,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-public partial class Program { }

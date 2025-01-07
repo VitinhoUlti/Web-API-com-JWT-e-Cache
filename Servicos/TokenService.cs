@@ -2,6 +2,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Testezin.Entidades;
 
@@ -9,10 +10,15 @@ namespace Testezin.Servicos
 {
     public class TokenService
     {
-        public static string GerarToken(Usuarios usuario)
+        private readonly IConfiguration configuration;
+        public TokenService(IConfiguration Configuration)
+        {
+            configuration = Configuration;
+        }
+        public string GerarToken(Usuarios usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(Chave.chaveSecreta);
+            var key = Encoding.UTF8.GetBytes(configuration.GetSection("ChaveJWT").Value);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = GerarClaims(usuario),

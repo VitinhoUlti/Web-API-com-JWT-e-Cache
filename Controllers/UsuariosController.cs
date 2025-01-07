@@ -17,10 +17,12 @@ namespace Testezin.Controllers
     {
         private readonly UsuariosContext contexto;
         private readonly IMemoryCache _memoryCache;
+        private readonly IConfiguration _configuration;
 
-        public UsuariosController(UsuariosContext usuariosContext, IMemoryCache memorycache){
+        public UsuariosController(UsuariosContext usuariosContext, IMemoryCache memorycache, IConfiguration configuration){
             contexto = usuariosContext;
             _memoryCache = memorycache;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -28,7 +30,9 @@ namespace Testezin.Controllers
         public IActionResult Cadastrar(Usuarios usuario){
             contexto.Add(usuario);
             contexto.SaveChanges();
-            var token = TokenService.GerarToken(usuario);
+
+            var tokenService = new TokenService(_configuration);
+            var token = tokenService.GerarToken(usuario);
             return CreatedAtAction(nameof(ObterId), new {id = usuario.Id, token = token}, usuario);
         }
 

@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Chave.chaveSecreta = builder.Configuration["ChaveJWT"];
-
 // Add services to the container.
 builder.Services.AddDbContext<HobbiesContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 builder.Services.AddDbContext<UsuariosContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
@@ -19,13 +17,13 @@ builder.Services.AddDbContext<UsuariosContext>(options => options.UseNpgsql(buil
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme =  JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options => {
+}).AddJwtBearer(options => {;
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
 
     options.TokenValidationParameters = new TokenValidationParameters{
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Chave.chaveSecreta)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["ChaveJWT"])),
         
         ValidateIssuer = false,
         ValidateAudience = false

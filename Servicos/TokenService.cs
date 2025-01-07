@@ -7,7 +7,7 @@ using Testezin.Entidades;
 
 namespace Testezin.Servicos
 {
-    public static class TokenService
+    public class TokenService
     {
         public static string GerarToken(Usuarios usuario)
         {

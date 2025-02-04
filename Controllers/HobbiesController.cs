@@ -17,6 +17,10 @@ namespace Testezin.Controllers
     {
         private readonly HobbiesContext contexto;
         private readonly IMemoryCache _memoryCache;
+        private readonly MemoryCacheEntryOptions memorycacheoptions = new MemoryCacheEntryOptions {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
+            SlidingExpiration = TimeSpan.FromSeconds(1200)
+        };
 
         public HobbiesController(HobbiesContext hobbiesContext, IMemoryCache memoryCache){
             contexto = hobbiesContext;
@@ -42,10 +46,6 @@ namespace Testezin.Controllers
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();
 
-            var memorycacheoptions = new MemoryCacheEntryOptions {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
-                SlidingExpiration = TimeSpan.FromSeconds(1200)
-            };
             _memoryCache.Set(id.ToString(), hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
@@ -59,10 +59,6 @@ namespace Testezin.Controllers
             var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome.ToLower().Contains(nome.ToLower()) select pessoa;
             if (hobbie == null) return NotFound();
 
-            var memorycacheoptions = new MemoryCacheEntryOptions {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
-                SlidingExpiration = TimeSpan.FromSeconds(1200)
-            };
             _memoryCache.Set(nome.ToString(), hobbie, memorycacheoptions);
             return Ok(hobbie);
         }

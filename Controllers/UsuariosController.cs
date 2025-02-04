@@ -56,7 +56,9 @@ namespace Testezin.Controllers
                 if(hash.VerificarSenha(senha, usuario.Senha)){
                     _memoryCache.Set(new {nome, senha}, usuario, memorycacheoptions);
 
-                    return Ok(new {usuario});
+                    var tokenService = new TokenService(_configuration);
+                    var token = tokenService.GerarToken(usuario);
+                    return Ok(new {usuario, token});
                 }
             }
 

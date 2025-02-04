@@ -21,6 +21,10 @@ namespace Testezin.Controllers
         private readonly IMemoryCache _memoryCache;
         private readonly IConfiguration _configuration;
         private readonly Hash hash = new Hash(SHA512.Create());
+        private readonly MemoryCacheEntryOptions memorycacheoptions = new MemoryCacheEntryOptions {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
+            SlidingExpiration = TimeSpan.FromSeconds(1200)
+        };
 
         public UsuariosController(UsuariosContext usuariosContext, IMemoryCache memorycache, IConfiguration configuration){
             contexto = usuariosContext;
@@ -37,7 +41,7 @@ namespace Testezin.Controllers
 
             var tokenService = new TokenService(_configuration);
             var token = tokenService.GerarToken(usuario);
-            return CreatedAtAction(nameof(ObterId), new {id = usuario.Id, token = token}, usuario);
+            return CreatedAtAction(nameof(ObterId), new {id = usuario.Id, token}, usuario);
         }
 
         [HttpGet("login/{nome}/{senha}")]
@@ -46,14 +50,10 @@ namespace Testezin.Controllers
             var usuarioCache = _memoryCache.Get(new {nome, senha});
             if(_memoryCache.TryGetValue(new {nome, senha}, out usuarioCache)) {return Ok(usuarioCache);}
 
-            var login = from pessoa in contexto.Usuarios where pessoa.Nome.ToLower().Contains(nome.ToLower()) select pessoa;
+            var login = from pessoa in contexto.Usuarios where pessoa.Nome.ToLower() == nome.ToLower() select pessoa;
 
             foreach(var usuario in login) {
                 if(hash.VerificarSenha(senha, usuario.Senha)){
-                    var memorycacheoptions = new MemoryCacheEntryOptions {
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
-                        SlidingExpiration = TimeSpan.FromSeconds(1200)
-                    };
                     _memoryCache.Set(new {nome, senha}, usuario, memorycacheoptions);
 
                     return Ok(new {usuario});
@@ -72,10 +72,6 @@ namespace Testezin.Controllers
             var usuario = contexto.Usuarios.Find(id);
             if (usuario == null) return NotFound();
 
-            var memorycacheoptions = new MemoryCacheEntryOptions {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3600),
-                SlidingExpiration = TimeSpan.FromSeconds(1200)
-            };
             _memoryCache.Set(id.ToString(), usuario, memorycacheoptions);
             return Ok(usuario);
         }

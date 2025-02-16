@@ -41,7 +41,7 @@ namespace Testezin.Controllers
 
             var tokenService = new TokenService(_configuration);
             var token = tokenService.GerarToken(usuario);
-            return CreatedAtAction(nameof(ObterId), new {id = usuario.Id, token = token}, usuario = usuario);
+            return Ok(new {usuario = usuario, token = token});
         }
 
         [HttpGet("login/{nome}/{senha}")]

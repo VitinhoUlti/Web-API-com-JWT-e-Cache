@@ -48,7 +48,13 @@ namespace Testezin.Controllers
         [AllowAnonymous]
         public IActionResult Login(string nome, string senha){
             var usuarioCache = _memoryCache.Get(new {nome, senha});
-            if(_memoryCache.TryGetValue(new {nome, senha}, out usuarioCache)) {return Ok(usuarioCache);}
+            
+            if(_memoryCache.TryGetValue(new {nome, senha}, out usuarioCache)) {
+                var tokenService = new TokenService(_configuration);
+                var token = tokenService.GerarToken((Usuarios)usuarioCache);
+
+                return Ok(new {usuario = usuarioCache, token = token});
+            }
 
             var login = from pessoa in contexto.Usuarios where pessoa.Nome.ToLower() == nome.ToLower() select pessoa;
 

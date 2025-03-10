@@ -63,6 +63,19 @@ namespace Testezin.Controllers
             return Ok(hobbie);
         }
 
+        [HttpGet("idusuario/{id}")]
+        [Authorize]
+        public IActionResult ObterIdUsuario(int id){
+            var hobbieCache = _memoryCache.Get(id.ToString());
+            if(_memoryCache.TryGetValue(id.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
+
+            var hobbie = from usuario in contexto.Hobbies where usuario.IdDoUsuario == id select usuario;
+            if (hobbie == null) return NotFound();
+
+            _memoryCache.Set(id.ToString(), hobbie, memorycacheoptions);
+            return Ok(hobbie);
+        }
+
         [HttpPut("{id}")]
         [Authorize]
         public IActionResult AtualizarHobbieporId(int id, Hobbies novoHobbie){

@@ -41,12 +41,12 @@ namespace Testezin.Controllers
         [Authorize]
         public IActionResult ObterId(int id){
             var hobbieCache = _memoryCache.Get(id.ToString());
-            if(_memoryCache.TryGetValue(id.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
+            if(_memoryCache.TryGetValue(id.ToString() + "HobbiesId", out hobbieCache)) {return Ok(hobbieCache);}
 
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();
 
-            _memoryCache.Set(id.ToString(), hobbie, memorycacheoptions);
+            _memoryCache.Set(id.ToString() + "HobbiesId", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 
@@ -66,13 +66,13 @@ namespace Testezin.Controllers
         [HttpGet("idusuario/{id}")]
         [Authorize]
         public IActionResult ObterIdUsuario(int id){
-            var hobbieCache = _memoryCache.Get(id.ToString());
+            var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesUsuario");
             if(_memoryCache.TryGetValue(id.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
 
             var hobbie = from usuario in contexto.Hobbies where usuario.IdDoUsuario == id select usuario;
             if (hobbie == null) return NotFound();
 
-            _memoryCache.Set(id.ToString(), hobbie, memorycacheoptions);
+            _memoryCache.Set(id.ToString() + "HobbiesUsuario", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 

@@ -53,26 +53,26 @@ namespace Testezin.Controllers
         [HttpGet("nome/{nome}")]
         [Authorize]
         public IActionResult ObterNome(string nome){
-            var hobbieCache = _memoryCache.Get(nome.ToString() + "HobbiesNome");
-            if(_memoryCache.TryGetValue(nome.ToString() + "HobbiesNome", out hobbieCache)) {return Ok(hobbieCache);}
+            var hobbieCache = _memoryCache.Get(nome + "HobbiesNome");
+            if(_memoryCache.TryGetValue(nome + "HobbiesNome", out hobbieCache)) {return Ok(hobbieCache);}
 
-            var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome.ToLower().Contains(nome.ToLower()) select pessoa;
+            var hobbie = contexto.Hobbies.Where(pessoa => pessoa.Nome.ToLower().Contains(nome.ToLower())).ToList();
             if (hobbie == null) return NotFound();
 
-            _memoryCache.Set(nome.ToString() + "HobbiesNome", hobbie, memorycacheoptions);
+            _memoryCache.Set(nome + "HobbiesNome", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 
         [HttpGet("idusuario/{id}")]
-        [Authorize]
+        [AllowAnonymous]
         public IActionResult ObterIdUsuario(int id){
-            var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesUsuario");
-            if(_memoryCache.TryGetValue(id.ToString() + "HobbiesUsuario", out hobbieCache)) {return Ok(hobbieCache);}
+            var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesIdU");
+            if(_memoryCache.TryGetValue(id.ToString() + "HobbiesIdU", out hobbieCache)) {return Ok(hobbieCache);}
 
-            var hobbie = from usuario in contexto.Hobbies where usuario.IdDoUsuario == id select usuario;
+            var hobbie = contexto.Hobbies.Where(hobbie => hobbie.IdDoUsuario == id).ToList();
             if (hobbie == null) return NotFound();
 
-            _memoryCache.Set(id.ToString() + "HobbiesUsuario", hobbie, memorycacheoptions);
+            _memoryCache.Set(id.ToString() + "HobbiesIdU", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 

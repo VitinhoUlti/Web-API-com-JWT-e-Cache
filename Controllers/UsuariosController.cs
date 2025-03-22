@@ -74,13 +74,13 @@ namespace Testezin.Controllers
         [HttpGet("id/{id}")]
         [Authorize]
         public IActionResult ObterId(int id){
-            var usuarioCache = _memoryCache.Get(id.ToString());
-            if(_memoryCache.TryGetValue(id.ToString(), out usuarioCache)) {return Ok(usuarioCache);}
+            var usuarioCache = _memoryCache.Get(id.ToString() + "UsuarioId");
+            if(_memoryCache.TryGetValue(id.ToString() + "UsuarioId", out usuarioCache)) {return Ok(usuarioCache);}
 
             var usuario = contexto.Usuarios.Find(id);
             if (usuario == null) return NotFound();
 
-            _memoryCache.Set(id.ToString(), usuario, memorycacheoptions);
+            _memoryCache.Set(id.ToString() + "UsuarioId", usuario, memorycacheoptions);
             return Ok(usuario);
         }
 

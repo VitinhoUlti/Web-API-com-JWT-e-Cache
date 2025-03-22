@@ -40,7 +40,7 @@ namespace Testezin.Controllers
         [HttpGet("id/{id}")]
         [Authorize]
         public IActionResult ObterId(int id){
-            var hobbieCache = _memoryCache.Get(id.ToString());
+            var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesId");
             if(_memoryCache.TryGetValue(id.ToString() + "HobbiesId", out hobbieCache)) {return Ok(hobbieCache);}
 
             var hobbie = contexto.Hobbies.Find(id);
@@ -53,13 +53,13 @@ namespace Testezin.Controllers
         [HttpGet("nome/{nome}")]
         [Authorize]
         public IActionResult ObterNome(string nome){
-            var hobbieCache = _memoryCache.Get(nome.ToString());
-            if(_memoryCache.TryGetValue(nome.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
+            var hobbieCache = _memoryCache.Get(nome.ToString() + "HobbiesNome");
+            if(_memoryCache.TryGetValue(nome.ToString() + "HobbiesNome", out hobbieCache)) {return Ok(hobbieCache);}
 
             var hobbie = from pessoa in contexto.Hobbies where pessoa.Nome.ToLower().Contains(nome.ToLower()) select pessoa;
             if (hobbie == null) return NotFound();
 
-            _memoryCache.Set(nome.ToString(), hobbie, memorycacheoptions);
+            _memoryCache.Set(nome.ToString() + "HobbiesNome", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 
@@ -67,7 +67,7 @@ namespace Testezin.Controllers
         [Authorize]
         public IActionResult ObterIdUsuario(int id){
             var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesUsuario");
-            if(_memoryCache.TryGetValue(id.ToString(), out hobbieCache)) {return Ok(hobbieCache);}
+            if(_memoryCache.TryGetValue(id.ToString() + "HobbiesUsuario", out hobbieCache)) {return Ok(hobbieCache);}
 
             var hobbie = from usuario in contexto.Hobbies where usuario.IdDoUsuario == id select usuario;
             if (hobbie == null) return NotFound();

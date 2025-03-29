@@ -64,7 +64,7 @@ namespace Testezin.Controllers
         }
 
         [HttpGet("idusuario/{id}")]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult ObterIdUsuario(int id){
             var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesIdU");
             if(_memoryCache.TryGetValue(id.ToString() + "HobbiesIdU", out hobbieCache)) {return Ok(hobbieCache);}

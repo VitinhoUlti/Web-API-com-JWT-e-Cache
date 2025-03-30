@@ -66,13 +66,8 @@ namespace Testezin.Controllers
         [HttpGet("idusuario/{id}")]
         [Authorize]
         public IActionResult ObterIdUsuario(int id){
-            var hobbieCache = _memoryCache.Get(id.ToString() + "HobbiesIdU");
-            if(_memoryCache.TryGetValue(id.ToString() + "HobbiesIdU", out hobbieCache)) {return Ok(hobbieCache);}
-
             var hobbie = contexto.Hobbies.Where(hobbie => hobbie.IdDoUsuario == id).ToList();
             if (hobbie == null) return NotFound();
-
-            _memoryCache.Set(id.ToString() + "HobbiesIdU", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 

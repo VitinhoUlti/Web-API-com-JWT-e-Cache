@@ -71,9 +71,23 @@ namespace Testezin.Controllers
             return NotFound();
         }
 
+        [HttpGet("nome/{nome}")]
+        [AllowAnonymous]
+        public IActionResult ObterPorNome(string nome){
+            var usuarioCache = _memoryCache.Get(nome + "UsuarioNome");
+            if(_memoryCache.TryGetValue(nome + "UsuarioNome", out usuarioCache)) return Ok(usuarioCache);
+
+            var usuario = from pessoa in contexto.Usuarios where pessoa.Nome.ToLower() == nome.ToLower() select pessoa;
+            if(usuario == null) return NotFound();
+
+            _memoryCache.Set(nome + "UsuarioNome", usuario, memorycacheoptions);
+
+            return Ok(usuario);
+        }
+
         [HttpGet("id/{id}")]
         [Authorize]
-        public IActionResult ObterId(int id){
+        public IActionResult ObterPorId(int id){
             var usuarioCache = _memoryCache.Get(id.ToString() + "UsuarioId");
             if(_memoryCache.TryGetValue(id.ToString() + "UsuarioId", out usuarioCache)) {return Ok(usuarioCache);}
 

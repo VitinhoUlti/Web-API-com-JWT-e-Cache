@@ -77,7 +77,7 @@ namespace Testezin.Controllers
             var usuarioCache = _memoryCache.Get(nome.ToString() + "UsuarioId");
             if(_memoryCache.TryGetValue(nome.ToString() + "UsuarioId", out usuarioCache)) {return Ok(usuarioCache);}
 
-            List<Usuarios> usuario = contexto.Usuarios.Where(pessoa => pessoa.Nome.Equals(nome)).ToList();
+            var usuario = contexto.Usuarios.Where(pessoa => pessoa.Nome.ToLower().Equals(nome.ToLower())).ToList();
             if(usuario.Count == 0) return NotFound();
 
             _memoryCache.Set(nome.ToString() + "UsuarioId", usuario, memorycacheoptions);

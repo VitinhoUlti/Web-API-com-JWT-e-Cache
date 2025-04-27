@@ -49,7 +49,7 @@ namespace Testezin.Controllers
         [Authorize]
         public IActionResult ObterNome(string nome){
             var hobbie = contexto.Hobbies.Where(pessoa => pessoa.Nome.ToLower() == nome.ToLower()).ToList(); //esse e o where do idusuario fazem parecido mas eu escrevi de formas diferentes para testar performaces, deu o mesmo resultado
-            if (hobbie == null) return NotFound();
+            if (hobbie.Count == 0) return NotFound();
             return Ok(hobbie);
         }
 

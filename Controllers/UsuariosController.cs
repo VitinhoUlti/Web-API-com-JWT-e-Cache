@@ -74,13 +74,13 @@ namespace Testezin.Controllers
         [HttpGet("nome/{nome}")]
         [AllowAnonymous]
         public IActionResult ObterPorNome(string nome){
-            var usuarioCache = _memoryCache.Get(nome.ToString() + "UsuarioId");
-            if(_memoryCache.TryGetValue(nome.ToString() + "UsuarioId", out usuarioCache)) {return Ok(usuarioCache);}
+            var usuarioCache = _memoryCache.Get(nome.ToString() + "UsuarioNome");
+            if(_memoryCache.TryGetValue(nome.ToString() + "UsuarioNome", out usuarioCache)) {return Ok(usuarioCache);}
 
-            var usuario = contexto.Usuarios.Where(pessoa => pessoa.Nome.ToLower().Equals(nome.ToLower())).ToList();
+            var usuario = contexto.Usuarios.Where(pessoa => pessoa.Nome.ToLower().Equals(nome.ToLower())).ToList(); //deixei diferente do obter nome do hobbies para testar performace, porém os dois deram resultados iguais
             if(usuario.Count == 0) return NotFound();
 
-            _memoryCache.Set(nome.ToString() + "UsuarioId", usuario, memorycacheoptions);
+            _memoryCache.Set(nome.ToString() + "UsuarioNome", usuario, memorycacheoptions);
 
             return Ok(usuario);
         }

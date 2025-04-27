@@ -40,16 +40,26 @@ namespace Testezin.Controllers
         [HttpGet("id/{id}")]
         [Authorize]
         public IActionResult ObterId(int id){
+            var hobbiesCache = _memoryCache.Get(id.ToString() + "HobbiesId");
+            if(_memoryCache.TryGetValue(id.ToString() + "HobbiesId", out hobbiesCache)) {return Ok(hobbiesCache);}
+
             var hobbie = contexto.Hobbies.Find(id);
             if (hobbie == null) return NotFound();
+
+            _memoryCache.Set(id.ToString() + "HobbiesId", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 
         [HttpGet("nome/{nome}")]
         [Authorize]
         public IActionResult ObterNome(string nome){
-            var hobbie = contexto.Hobbies.Where(pessoa => pessoa.Nome.ToLower() == nome.ToLower()).ToList(); //esse e o where do idusuario fazem parecido mas eu escrevi de formas diferentes para testar performaces, deu o mesmo resultado
+            var hobbiesCache = _memoryCache.Get(nome.ToString() + "HobbiesNome");
+            if(_memoryCache.TryGetValue(nome.ToString() + "HobbiesNome", out hobbiesCache)) {return Ok(hobbiesCache);}
+
+            var hobbie = contexto.Hobbies.Where(pessoa => pessoa.Nome.ToLower() == nome.ToLower()).ToList();
             if (hobbie.Count == 0) return NotFound();
+
+            _memoryCache.Set(nome.ToString() + "HobbiesNome", hobbie, memorycacheoptions);
             return Ok(hobbie);
         }
 

@@ -74,13 +74,13 @@ namespace Testezin.Controllers
         [HttpGet("nome/{nome}")]
         [AllowAnonymous]
         public IActionResult ObterPorNome(string nome){
-            var usuarioCache = _memoryCache.Get(nome + "UsuarioNome");
-            if(_memoryCache.TryGetValue(nome + "UsuarioNome", out usuarioCache)) return Ok(usuarioCache);
+            var usuarioCache = _memoryCache.Get(nome.ToString() + "UsuarioNome");
+            if(_memoryCache.TryGetValue(nome.ToString() + "UsuarioNome", out usuarioCache)) {return Ok(usuarioCache);}
 
             var usuario = from pessoa in contexto.Usuarios where pessoa.Nome.ToLower() == nome.ToLower() select pessoa;
             if(usuario == null) return NotFound();
 
-            _memoryCache.Set(nome + "UsuarioNome", usuario, memorycacheoptions);
+            _memoryCache.Set(nome.ToString() + "UsuarioNome", usuario, memorycacheoptions);
 
             return Ok(usuario);
         }

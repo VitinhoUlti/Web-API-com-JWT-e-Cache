@@ -341,8 +341,8 @@
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/obj/Debug/net8.0/Testezin.sourcelink.json
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/appsettings.Development.json
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/Testezin/bin/Debug/net8.0/appsettings.json
-/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/bin/Debug/net8.0/appsettings.json
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/bin/Debug/net8.0/appsettings.Development.json
+/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/bin/Debug/net8.0/appsettings.json
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/bin/Debug/net8.0/MvcTestingAppManifest.json
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/bin/Debug/net8.0/Testezin
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/bin/Debug/net8.0/Testezin.deps.json
@@ -800,9 +800,9 @@
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Testezin.props
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/staticwebassets.pack.json
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/scopedcss/bundle/Testezin.styles.css
+/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/Testezin.csproj.Up2Date
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/Testezin.dll
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/refint/Testezin.dll
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/Testezin.pdb
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/Testezin.genruntimeconfig.cache
 /home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/ref/Testezin.dll
-/home/vitin/Documentos/Projetos/C#/TesteWebApi/BackEnd/obj/Debug/net8.0/Testezin.csproj.Up2Date

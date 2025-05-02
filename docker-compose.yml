@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hobbies5
+    ports:
+      - "5430:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    image: testezin10
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development # Ou Production
+      ConnectionStrings__ConexaoPadrao: Host=db;Port=5432;Database=hobbies5;Username=postgres;Password=postgres;
+      ChaveJWT: xiximchapinharecapinhastajHSKhsja7&JjskkLWKWLDJKSMD%
+    ports:
+      - "5057:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

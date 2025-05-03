@@ -23,5 +23,14 @@ services:
     depends_on:
       - db
 
+  mvc:
+    image: mvc2
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development # Ou Production
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
 volumes:
   db_data:

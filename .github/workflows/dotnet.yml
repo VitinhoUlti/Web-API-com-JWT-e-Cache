@@ -24,5 +24,3 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Container
-      run: docker build -t testezin10 .

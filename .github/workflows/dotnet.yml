@@ -29,4 +29,4 @@ jobs:
     - name: Postgresql
       run: docker pull postgres
     - name: Docker-Compose
-      run: docker compose up
+      run: docker compose build

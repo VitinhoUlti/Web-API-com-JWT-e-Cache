@@ -26,7 +26,3 @@ jobs:
       run: dotnet build --no-restore
     - name: Container
       run: docker build -t testezin10 .
-    - name: Postgresql
-      run: docker pull postgres
-    - name: Docker-Compose
-      run: docker compose build
